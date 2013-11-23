@@ -23,7 +23,42 @@
               </li>
             </ul>
 	</header>
-	<h1> We're playing the game here </h1>
+  <div id="tools" ng-model="currentTool">
+      <ul id={{currentTool.palette}} class="toolBar">
+        <li ng-repeat="option in options"></li>
+      </ul>
+  </div>
+  
+  <div class="canvasWarpper">
+    <canvas id="shard" style="border:1px solid #aaa"></canvas>
+  </div>
+  <ul id="toolMode" class="toolBar">
+    <li class="toolOption" data-tool="pen">PEN</li>
+    <li class="toolOption" data-tool="eraser">ERASER</li>
+    <li class="toolOption" data-tool="palette">Palette</li>
+    <li class="toolOption" data-tool="submit">SUBMIT</li>
+  </ul>
+  </div>
+
+  <div style="display: inline-block; margin-left: 10px">
+    <button id="clear-canvas" class="btn btn-info">Clear</button><br>
+
+    <div id="drawing-mode-options">
+      <label for="drawing-mode-selector">Mode:</label>
+      <select id="drawing-mode-selector">
+        <option>Pencil</option>
+        <option>Circle</option>
+        <option>Spray</option>
+      </select><br>
+
+      <label for="drawing-line-width">Line width:</label>
+      <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+
+      <label for="drawing-color">Line color:</label>
+      <input type="color" value="#005E7A" id="drawing-color"><br>
+
+    </div>
+  </div>
 	<footer>
 		<ul class="text-center row-fluid">
               <li class="span3">
@@ -48,4 +83,5 @@
               </li>
             </ul>
 	</footer>
+
 </section>

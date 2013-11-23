@@ -1,33 +1,28 @@
-<nav class="top-bar" data-ng-controller="HeaderController">
-  <ul class="title-area">
-    <!-- Title Area -->
-    <li class="name">
-      <h1><a href="/">Shard </a></h1>
-    </li>
-    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Left Nav Section -->
-    <ul class="left">
+<div class="navbar-inner" data-ng-controller="HeaderController">
+    <ul class="nav">
+        <li>
+            <a class="brand" href="/">MEAN - A Modern Stack</a>
+        </li>
         <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
             <a href="#!/{{item.link}}">{{item.title}}</a>
         </li>
-    <!-- Right Nav Section -->
-    <ul class="right" data-ng-hide="global.authenticated">
-      <li><a href="signup">Signup</a>
+    </ul>
+    <ul class="nav pull-right" data-ng-hide="global.authenticated">
+        <li><a href="signup">Signup</a>
         </li>
-        <li class="divider"></li>
+        <li class="divider-vertical"></li>
         <li><a href="signin">Signin</a>
         </li>
     </ul>
-    <ul class="right" data-ng-show="global.authenticated">
-      <li><a href="signup">{{global.user.name}} </a>
-        </li>
-        <li class="divider"></li>
-        <li><a href="/signout">Signout</a>
+    <ul class="nav pull-right" data-ng-show="global.authenticated">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {{global.user.name}} <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/signout">Signout</a>
+                </li>
+            </ul>
         </li>
     </ul>
-  </section>
-</nav>
+</div>

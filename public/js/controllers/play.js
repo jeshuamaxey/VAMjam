@@ -6,6 +6,23 @@ angular.module('mean.system').controller('PlayController', ['$scope', '$routePar
     	'options' : ['#FDFDFB', '#FFFA8B', '#FFFDD0', '#924F00', '#921800']
     };
 
+    /********/
+
+    $scope.create = function() {
+        var article = new Images({
+            title: 'test',
+            content: 'image'
+        });
+        article.$save(function(response) {
+            $location.path("articles/" + response._id);
+        });
+
+        this.title = "";
+        this.content = "";
+    };
+
+    /********/
+
     /*
 
     GOOD LUCK WITH THIS:

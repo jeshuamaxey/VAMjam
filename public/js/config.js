@@ -20,6 +20,9 @@ window.app.config(['$routeProvider',
         when('/gallery', {
             templateUrl: 'views/gallery.html'
         }).
+        when('/play', {
+            templateUrl: 'views/play.html'
+        }).
         otherwise({
             redirectTo: '/'
         });

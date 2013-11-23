@@ -1,53 +1,55 @@
 angular.module('mean.system').controller('PlayController', ['$scope', '$routeParams', '$location', 'Global', function ($scope, $routeParams, $location, Global) {
+    var fabric = window.fabric
     $scope.global = Global;
 
-    $scope.currentTool = {
-    	'name' : 'palette',
-    	'options' : ['#FDFDFB', '#FFFA8B', '#FFFDD0', '#924F00', '#921800']
-    };
-
-
-
-	$scope.canvas = (function (fabric){
-		var $ = function(el){document.get}
-
-		var f = {
-			init : function() {
-			  
-
-			  f.canvas = this.__canvas = new fabric.Canvas('shard', {
+    $scope.canvas = (function (fabric){
+		var canvas = this.__canvas = new fabric.Canvas('shard', {
 			    isDrawingMode: true
 			  });
+		canvas.setHeight(window.innerHeight - 250);
+		canvas.setWidth(window.innerWidth -50);
+		canvas.on("after:render", function(){canvas.calcOffset();});
+		return canvas
+	})(fabric)
 
-			  f.canvas.setHeight(320);
-			  f.canvas.setWidth(320);
-			  f.canvas.on("after:render", function(){f.canvas.calcOffset();});
 
-/*			  fabric.Object.prototype.transparentCorners = false;
+    $scope.current_color = 'black'
 
-			  var drawingModeEl = $('drawing-mode'),
-			      drawingOptionsEl = $('drawing-mode-options'),
-			      drawingColorEl = $('drawing-color'),
-			      drawingShadowColorEl = $('drawing-shadow-color'),
-			      drawingLineWidthEl = $('drawing-line-width'),
-			      drawingShadowWidth = $('drawing-shadow-width'),
-			      drawingShadowOffset = $('drawing-shadow-offset'),
-			      clearEl = $('clear-canvas');
+    $scope.tools = [
+    		{
+    			'name': 'Pencil',
+    			'run': function(){
+    				$scope.canvas.freeDrawingBrush = new fabric.PencilBrush($scope.canvas);
+    				$scope.canvas.freeDrawingBrush.color  = $scope.current_color
+    			}
+    		},
+    		{
+    			'name': 'Eraser',
+    			'run': function(){
+    				$scope.current_color = $scope.canvas.freeDrawingBrush.color;
+    				$scope.canvas.freeDrawingBrush = new fabric.PencilBrush($scope.canvas);
+    				$scope.canvas.freeDrawingBrush.color = 'white';
+    				$scope.canvas.freeDrawingBrush.width = 25;
 
-			  clearEl.onclick = function() { f.canvas.clear(); };
+    			}
+	    	},
+	    	{
+    		'name': 'Spray',
+    		'run': function(){
+    			$scope.canvas.freeDrawingBrush = new fabric.SprayBrush($scope.canvas)
+    			$scope.canvas.freeDrawingBrush.color  = $scope.current_color
+    			$scope.canvas.freeDrawingBrush.density = 50;
+    			}
+    		}
 
-			  $('drawing-mode-selector').onchange = function() {
-			    f.canvas.freeDrawingBrush = new fabric[this.value + 'Brush'](f.canvas);
+	   	]
 
-			    if (f.canvas.freeDrawingBrush) {
-			      f.canvas.freeDrawingBrush.color = drawingColorEl.value;
-			      f.canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
-			      f.canvas.freeDrawingBrush.shadowBlur = parseInt(drawingShadowWidth.value, 10) || 0;
-			    }
-			  };*/
-			}
-		};
-		return f.init()
-	})(window.fabric)
-    
+	$scope.colors = [
+			'blue', 'red', 'green', 'yellow', 'black', 'white', 'whitesmoke'
+		]
+
+	$scope.save = function(canvas){
+		var image = canvas.toDataURL()
+	}
+   
 }]);

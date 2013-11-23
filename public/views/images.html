@@ -1,0 +1,14 @@
+<h1>These are all the images</h1>
+
+<section data-ng-controller="ImagesController" data-ng-init="find()">
+	<ul class="images unstyled">
+		<li data-ng-repeat="image in images">
+			<span>{{image.created | date:'medium'}}</span> /
+			<span>{{image.user.name}}</span>
+			<h2><a data-ng-href="#!/images/{{image._id}}">{{image.title}}</a></h2>
+			<img class="bg" src="{{image.bgurl}}" alt="">
+			<img class="drawing" src="{{image.drawingurl}}" alt="" style="opacity: 0.5">
+		</li>
+	</ul>
+	<h1 data-ng-hide="!images || images.length">No images yet. <br> Why don't you <a href="/#!/images/create">Create One</a>?</h1>
+</section>

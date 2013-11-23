@@ -1,0 +1,22 @@
+h1 {
+	text-align:center;
+	color: hotpink;
+}
+
+img.bg {
+	position:relative;
+	left:0px;
+	top:0px;
+	z-index:-1;
+}
+
+img.drawing {
+	position:relative;
+	left:0px;
+	top:-320px;
+	z-index:1;
+}
+
+ul.images li:not(:last-child) {
+	border-bottom:1px solid #ccc;
+}

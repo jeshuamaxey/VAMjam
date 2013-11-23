@@ -71,6 +71,16 @@ module.exports = function(app, passport, auth) {
     //Finish with setting up the articleId param
     app.param('articleId', articles.article);
 
+    //Image Routes
+    var images = require('../app/controllers/images');
+    app.get('/images', images.all);
+    app.post('/images', auth.requiresLogin, images.create);
+    app.get('/images/:imageId', images.show);
+    // app.put('/images/:imageId', auth.requiresLogin, auth.image.hasAuthorization, images.update);
+    // app.del('/images/:imageId', auth.requiresLogin, auth.image.hasAuthorization, images.destroy);
+    //Finish with setting up the articleId param
+    app.param('imageId', images.image);
+
     //Home route
     var index = require('../app/controllers/index');
     app.get('/', index.render);

@@ -6,12 +6,6 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
     	"title": "Play!",
     	"link": "play"
     }, {
-        "title": "Articles",
-        "link": "articles"
-    }, {
-        "title": "Create New Article",
-        "link": "articles/create"
-    }, {
         "title": "Images",
         "link": "images"
     }

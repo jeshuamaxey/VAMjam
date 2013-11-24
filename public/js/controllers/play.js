@@ -6,12 +6,11 @@ angular.module('mean.system').controller('PlayController', ['$scope', '$routePar
 		var canvas = this.__canvas = new fabric.Canvas('shard', {
 			    isDrawingMode: true
 			  });
-		canvas.setHeight(window.innerHeight - 250);
-		canvas.setWidth(window.innerWidth -50);
+		canvas.setHeight(640);
+		canvas.setWidth(640);
 		canvas.on("after:render", function(){canvas.calcOffset();});
 		return canvas
 	})(fabric)
-
 
     $scope.current_color = 'black'
 
@@ -45,11 +44,12 @@ angular.module('mean.system').controller('PlayController', ['$scope', '$routePar
 	   	]
 
 	$scope.colors = [
-			'blue', 'red', 'green', 'yellow', 'black', 'white', 'whitesmoke'
+			'blue', 'red', 'green', 'yellow', 'black', 'white', 'whitesmoke',
+			'#FDFDFB', '#FFFA8B', '#FFFDD0', '#924F00', '#921800'
 		]
 
 	$scope.save = function(canvas){
-		var image = canvas.toDataURL()
+		var image = canvas.toDataURL();
 	}
    
 }]);

@@ -1,6 +1,6 @@
 h1 {
 	text-align:center;
-	color: hotpink;
+
 }
 
 img.bg {
@@ -12,10 +12,9 @@ img.bg {
 
 img.drawing {
 	position:relative;
-	left:0px;
-	top:-320px;
+	left: -320px;
 	z-index:1;
-}
+} 
 
 ul.images li:not(:last-child) {
 	border-bottom:1px solid #ccc;
